@@ -3,10 +3,12 @@
 
     using Prism.Commands;
     using Prism.Navigation;
+    using System;
     using System.Threading.Tasks;
 
     public class MainPageViewModel : Prism.Mvvm.BindableBase
     {
+        int cantLogin = 1;
         public INavigationService NavigationService { get; set; }
         public MainPageViewModel(INavigationService navigationService)
         {
@@ -90,22 +92,25 @@
                 return;
             }
 
-            if (Pass != "1234")
-            {
-                await App.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "Contraseña incorrecta",
-                    "Ok");
-                IsBusy = false;
-                return;
-            }
-            if (Correo != "Admin01")
+            
+            if (Correo != "Ris")
             {
                 await App.Current.MainPage.DisplayAlert(
                     "Error",
                     "Usuario incorrecto",
                     "Ok");
                 IsBusy = false;
+                cantLogin++; CheckCOUNT();
+                return;
+            }
+            if (Pass != "123")
+            {
+                await App.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Contraseña incorrecta",
+                    "Ok");
+                IsBusy = false;
+                cantLogin++; CheckCOUNT();
                 return;
             }
 
@@ -117,5 +122,12 @@
             Pass = string.Empty;
         }
 
+        private void CheckCOUNT()
+        {
+            if (cantLogin>3)
+            {
+                App.Current.MainPage.DisplayAlert("Intentos sospechosos", "Has intentado loguearte demasidas veces erroneamente", "Ok");
+            }
+        }
     }
 }

@@ -41,9 +41,12 @@ namespace PrismSchoolRegister.ViewModels
         #region METODOS
         private void AddMethod()
         {
+            IsBusy = true;
+            MateriaNueva.Carrera = Carrera;
             AllMaterias.Add(MateriaNueva);
             MateriaNueva = new Materia();
             jsonHandler.SaveData<ObservableCollection<Materia>>(AllMaterias,JsonFilePath.MateriasJson);
+            IsBusy = false;
         }
 
         private  void RefreshMethod()
@@ -91,6 +94,16 @@ namespace PrismSchoolRegister.ViewModels
             {
                 if (SetProperty(ref _IsBusy, value))
                     IsNotBusy = !IsBusy;
+            }
+        }
+
+        private string _carrera;
+        public string Carrera
+        {
+            get { return _carrera; }
+            set
+            {
+                SetProperty(ref _carrera, value);
             }
         }
         public ObservableCollection<Materia> AllMaterias { get; set; }

@@ -5,5 +5,86 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismSchoolRegister.Views.DocentesPAGE"
              Title="Docente">
-    
+
+
+    <ListView Header="{Binding }"
+              ItemsSource="{Binding AllDocentes}"
+              IsPullToRefreshEnabled="True"
+              IsRefreshing="{Binding IsBusy,Mode=OneWay}"
+              RefreshCommand="{Binding RefreshCommand}"
+              >
+        <ListView.HeaderTemplate>
+            <DataTemplate>
+                <ContentView>
+                    <StackLayout>
+                        <Grid HorizontalOptions="Fill">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Entry Placeholder="Nombre" Text="{Binding DocenteNueva.Nombre}" 
+                                   Grid.Column="1" Grid.Row="0"/>
+                            <Entry Placeholder="Edad" Text="{Binding DocenteNueva.Edad}" 
+                                   Grid.Column="1" Grid.Row="1"
+                               Keyboard="Numeric"/>
+                            <Entry Placeholder="Correo" Text="{Binding DocenteNueva.Correo}" 
+                                   Grid.Column="1" Grid.Row="2"
+                               Keyboard="Email"/>
+
+                            <Label Text="Nombre" Grid.Column="0"
+                                   Grid.Row="0"/>
+                            <Label Text="Edad" Grid.Column="0"
+                                   Grid.Row="1"/>
+                            <Label Text="Correo" Grid.Column="0"
+                                   Grid.Row="2"/>
+                        </Grid>
+
+                        <Button Text="Registrar" 
+                                BackgroundColor="#6E58E8"
+                                TextColor="White" 
+                                Command="{Binding AddCommand}"/>
+                        <BoxView HeightRequest="2" HorizontalOptions="Fill" BackgroundColor="Black"/>
+                        <Grid HorizontalOptions="Fill">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Edad" Grid.Column="0" HorizontalOptions="Center"/>
+                            <Label Text="Nombre" Grid.Column="1" HorizontalOptions="Center"/>
+                            <Label Text="Correo" Grid.Column="2" HorizontalOptions="Center"/>
+                        </Grid>
+                    </StackLayout>
+                </ContentView>
+            </DataTemplate>
+        </ListView.HeaderTemplate>
+
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid HorizontalOptions="Fill">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Label Text="{Binding Edad}" Grid.Column="0" HorizontalOptions="Center"/>
+                        <Label Text="{Binding Nombre }" Grid.Column="1" HorizontalOptions="Center"/>
+                        <Label Text="{Binding Correo }" Grid.Column="2" HorizontalOptions="Center"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

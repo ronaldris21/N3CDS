@@ -5,6 +5,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismSchoolRegister.Views.MateriasPage"
              Title="Materias">
+    
     <ListView Header="{Binding }"
               ItemsSource="{Binding AllMaterias}"
               IsPullToRefreshEnabled="True"
@@ -15,39 +16,83 @@
             <DataTemplate>
                 <ContentView>
                     <StackLayout>
-                        <Entry Placeholder="Usuario" Text="{Binding MateriaNueva.MateriaName}"/>
-                        <Entry Placeholder="CUM" Text="{Binding MateriaNueva.CantCum}"
+                        <Grid HorizontalOptions="Fill">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Entry Placeholder="Materia" Text="{Binding MateriaNueva.MateriaName}" 
+                                   Grid.Column="1" Grid.Row="0"/>
+                            <Entry Placeholder="CUM" Text="{Binding MateriaNueva.CantCum}" 
+                                   Grid.Column="1" Grid.Row="1"
                                Keyboard="Numeric"/>
-                        <Picker SelectedItem="{Binding MateriaNueva.Carrera,Mode=TwoWay}">
-                            <Picker.ItemsSource>
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>Ingeniería en Sistemas</x:String>
-                                    <x:String>Mercadeo</x:String>
-                                    <x:String>Idiomas</x:String>
-                                    <x:String>Comunicaciones</x:String>
-                                    <x:String>Diseño</x:String>
-                                </x:Array>
-                            </Picker.ItemsSource>
-                        </Picker>
+                            <Picker SelectedItem="{Binding MateriaNueva.Carrera}"
+                                    Grid.Column="1" Grid.Row="2">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Ingeniería en Sistemas</x:String>
+                                        <x:String>Mercadeo</x:String>
+                                        <x:String>Idiomas</x:String>
+                                        <x:String>Comunicaciones</x:String>
+                                        <x:String>Diseño</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+
+                            <Label Text="Materia" Grid.Column="0"
+                                   Grid.Row="0"/>
+                            <Label Text="CUM" Grid.Column="0"
+                                   Grid.Row="1"/>
+                            <Label Text="Carrera" Grid.Column="0"
+                                   Grid.Row="2"/>
+                        </Grid>
+                        
                         <Button Text="Registrar" 
                                 BackgroundColor="#6E58E8"
                                 TextColor="White" 
                                 Command="{Binding AddCommand}"/>
                         <BoxView HeightRequest="2" HorizontalOptions="Fill" BackgroundColor="Black"/>
-                        <Grid>
+                        <Grid HorizontalOptions="Fill">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Text="CUM" Grid.Column="0"/>
-                            <Label Text="Carrera" Grid.Column="1"/>
-                            <Label Text="Materia" Grid.Column="2"/>
+                            <Label Text="CUM" Grid.Column="0" HorizontalOptions="Center"/>
+                            <Label Text="Carrera" Grid.Column="1" HorizontalOptions="Center"/>
+                            <Label Text="Materia" Grid.Column="2" HorizontalOptions="Center"/>
                         </Grid>
                     </StackLayout>
                 </ContentView>
             </DataTemplate>
         </ListView.HeaderTemplate>
+
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid HorizontalOptions="Fill">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Label Text="{Binding CantCum }" Grid.Column="0" HorizontalOptions="Center"/>
+                        <Label Text="{Binding Carrera}" Grid.Column="1" HorizontalOptions="Center"/>
+                        <Label Text="{Binding MateriaName }" Grid.Column="2" HorizontalOptions="Center"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
     </ListView>
 </ContentPage>
