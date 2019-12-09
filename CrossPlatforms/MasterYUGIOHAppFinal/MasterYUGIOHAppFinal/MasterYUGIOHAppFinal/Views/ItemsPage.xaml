@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MasterYUGIOHAppFinal.Views.ItemsPage"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New Prueba" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>    
+    
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Cartas}"
+                  IsPullToRefreshEnabled="True"
+                  IsRefreshing="{Binding IsBusy,Mode=OneWay}"
+                  RefreshCommand="{Binding LoadItemsCommand}"
+                      HasUnevenRows="True"
+                  >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame>
+                                <StackLayout Margin="0" Padding="0">
+                                    <Label Text="{Binding card.title_english}"
+                                           HorizontalOptions="Center"
+                                           FontSize="Large"          
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding card.raritySelected}"
+
+                                           HorizontalOptions="Center"
+
+                                           FontAttributes="Bold"/>
+                                    <ffimage:CachedImage    Source="{Binding card.imageSelected}"
+                                                            Aspect="AspectFit"
+                                                            LoadingPlaceholder="BackCard.png"
+                                                            ErrorPlaceholder="BackCard.png"
+                                                            CacheDuration="10"
+                                                            RetryCount="1"
+                                                            CacheType="Disk"
+                                >
+                                        <ffimage:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="2" />
+                                        </ffimage:CachedImage.GestureRecognizers>
+                                    </ffimage:CachedImage>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Label Style="{StaticResource LabelTitle}"
+                   Text="Se están descargando muchas imagenes de una vez, ten paciencia por favor"
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding IsBusy,Mode=TwoWay}"/>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

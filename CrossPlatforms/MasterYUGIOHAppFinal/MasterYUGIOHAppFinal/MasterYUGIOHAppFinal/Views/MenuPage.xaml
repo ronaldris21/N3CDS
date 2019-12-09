@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="clr-namespace:MasterYUGIOHAppFinal.Models"
+             mc:Ignorable="d"
+             x:Class="MasterYUGIOHAppFinal.Views.MenuPage"
+             Title="Menu">
+    
+   
+    
+             
+    <ListView 
+        ItemSelected="ListView_ItemSelected"
+        BackgroundColor="White"
+        HasUnevenRows="True">
+        <ListView.ItemsSource>
+            <x:Array Type="{x:Type models:MasterMenuItem}">
+                <models:MasterMenuItem  Type="link_monster_cards" Title="link_monster_cards" Icon="BackCard.png"/>
+                <models:MasterMenuItem  Type="monster_cards" Title="monster_cards" Icon="BackCard.png"/>
+                <models:MasterMenuItem  Type="pendulum_monster_cards" Title="pendulum_monster_cards" Icon="BackCard.png"/>
+                <models:MasterMenuItem  Type="ritual_monster_cards" Title="ritual_monster_cards" Icon="BackCard.png"/>
+                <models:MasterMenuItem  Type="spell_cards" Title="spell_cards" Icon="BackCard.png"/>
+                <models:MasterMenuItem  Type="synchro_monster_cards" Title="synchro_monster_cards" Icon="BackCard.png"/>
+                <models:MasterMenuItem  Type="trap_cards" Title="trap_cards" Icon="BackCard.png"/>
+                <models:MasterMenuItem  Type="xyz_monster_cards" Title="xyz_monster_cards" Icon="BackCard.png"/>
+            </x:Array>
+        </ListView.ItemsSource>
+
+        <ListView.Header>
+            <ContentView>
+                <Frame CornerRadius="25"
+                       HasShadow="True"
+                       BorderColor="{StaticResource NavigationPrimary}"
+                       Padding="0">
+                    <Label Text="Cartas!!!!"
+                           HorizontalOptions="Center"
+                           Style="{StaticResource LabelTitle}"
+                           />
+                </Frame>
+            </ContentView>
+        </ListView.Header>
+        
+        
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0"
+                               Source="{Binding Icon}"
+                               HeightRequest="40"
+                               WidthRequest="40"
+                               HorizontalOptions="Center"
+                               />
+                        <Label Text="{Binding Title}" 
+                               Grid.Column="1"
+                           TextColor="Black"
+                               VerticalOptions="Center"
+                               FontSize="Medium"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="PrismSchoolWithLogin.Views.LoginFinal">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center"
+                        Padding="10">
+
+            <Image Source="UserICON.png" HeightRequest="150" Margin="0,30,0,0"/>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="User"
+                        TextColor="Black"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"/>
+                <Entry  Keyboard="Chat"
+                        Placeholder="Admin User"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Text="{Binding Correo,Mode=TwoWay}"
+                        TextColor="Black"
+                        PlaceholderColor="{StaticResource NavigationPrimary}"/>
+                <Label Text="Password"
+                        TextColor="Black"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center" />
+                <Entry  IsPassword="True"
+                        Placeholder="Enter your password"
+                        PlaceholderColor="{StaticResource NavigationPrimary}"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        TextColor="Black"
+                        Text="{Binding Pass, Mode=TwoWay}"/>
+            </Grid>
+
+            <ActivityIndicator
+                            IsRunning="{Binding IsBusy,Mode=OneWay}"
+                            Color="{StaticResource NavigationPrimary}"/>
+
+
+            <Button BackgroundColor="{StaticResource NavigationPrimary}"
+                    HeightRequest="40"
+                    TextColor="White"
+                    Text="Login"
+                    Margin="40,0" 
+                    IsEnabled="{Binding IsNotBusy}"
+                    Command="{Binding LoginCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PrismSchoolWithLogin.Views.MainPage"
+             NavigationPage.HasNavigationBar="False"
+             Title="{Binding Title}">
+
+
+    <ContentPage.Content>
+        
+        <Grid VerticalOptions="Fill" RowSpacing="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Frame Grid.Row="0" Grid.RowSpan="2" BackgroundColor="#518FF5"
+                   BorderColor="Black" CornerRadius="25"
+                   >
+                
+
+                <Frame BorderColor="Black" CornerRadius="25"
+                       Padding="0"
+                       BackgroundColor="Transparent"
+                       WidthRequest="125"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center">
+                    <Label Text="Docentes"
+                           Style="{StaticResource LabelTitle}"
+                           FontSize="Large"
+                           TextColor="Black"
+                           />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DocentesCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Frame>
+
+            <Frame Grid.Row="2" Grid.RowSpan="2" BackgroundColor="#C351F5" 
+                   BorderColor="Black" CornerRadius="25">
+                <Frame BorderColor="Black" CornerRadius="25"
+                       Padding="0"
+                       BackgroundColor="Transparent"
+                       WidthRequest="125"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center">
+                    <Label Text="Materias"
+                           Style="{StaticResource LabelTitle}"
+                           FontSize="Large"
+                           TextColor="Black"
+                           />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DocentesCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Frame>
+
+            
+            
+            
+            
+            <Frame Grid.Row="1" Grid.RowSpan="2" BackgroundColor="White"
+                   HasShadow="True"
+                   BorderColor="Black" CornerRadius="25"
+                   Margin="50,0"
+                   >
+                    <Label Text="Welcome Admin" Style="{StaticResource LabelTitle}"
+                       VerticalOptions="Center"/>
+            </Frame>
+
+        </Grid>
+    </ContentPage.Content>
+
+
+</ContentPage>
