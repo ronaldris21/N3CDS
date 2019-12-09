@@ -2,9 +2,9 @@
 
 namespace PrismSchoolRegister.Views
 {
-    public partial class Login : ContentPage
+    public partial class MateriasPage : ContentPage
     {
-        public Login()
+        public MateriasPage()
         {
             InitializeComponent();
         }

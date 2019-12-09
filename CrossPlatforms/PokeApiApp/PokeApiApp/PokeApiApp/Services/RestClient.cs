@@ -1,5 +1,4 @@
 ﻿
-
 namespace PokeApiApp.Services
 {
     using PokeApiApp.Models;

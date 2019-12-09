@@ -4,9 +4,21 @@
     using Prism.Commands;
     using Prism.Navigation;
     using System.Threading.Tasks;
-    
+
     public class MainPageViewModel : Prism.Mvvm.BindableBase
     {
+        public INavigationService NavigationService { get; set; }
+        public MainPageViewModel(INavigationService navigationService)
+        {
+            NavigationService = navigationService;
+            Title = "Login";
+            IsNotBusy = true;
+        }
+        public MainPageViewModel()
+        {
+            IsBusy = false;
+            Title = "LOGIN";
+        }
         private string _Tittle;
         public string Title
         {
@@ -17,13 +29,21 @@
         public bool IsNotBusy
         {
             get { return _isNotBusy; }
-            set { SetProperty(ref _isNotBusy, value); IsBusy = !IsNotBusy; }
+            set 
+            {
+                if (SetProperty(ref _isNotBusy, value))
+                    IsBusy = !IsNotBusy;
+            }
         }
         private bool _IsBusy;
         public bool IsBusy
         {
             get { return _IsBusy; }
-            set { SetProperty(ref _IsBusy, value); IsNotBusy = !IsBusy; }
+            set 
+            {
+                if (SetProperty(ref _IsBusy, value))
+                    IsNotBusy = !IsBusy;
+            }
         }
 
         #region Propiedades
@@ -40,7 +60,7 @@
             set { SetProperty(ref _pass, value); }
         }
         #endregion
-        
+
 
         #region Commands
         private DelegateCommand _LoginCommand;
@@ -96,13 +116,6 @@
             Correo = string.Empty;
             Pass = string.Empty;
         }
-        public INavigationService NavigationService { get; set; }
-        public MainPageViewModel(INavigationService navigationService)
-        {
-            NavigationService = navigationService;
-            Title = "Login";
-            IsBusy = false;
 
-        }
     }
 }

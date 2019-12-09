@@ -30,8 +30,9 @@ namespace PrismSchoolRegister
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-            containerRegistry.RegisterForNavigation<Login, LoginViewModel>();
             containerRegistry.RegisterForNavigation<Views.Menu, MenuViewModel>();
+            containerRegistry.RegisterForNavigation<MateriasPage, MateriasPageViewModel>();
+            containerRegistry.RegisterForNavigation<DocentesPAGE, DocentesPAGEViewModel>();
         }
     }
 }
