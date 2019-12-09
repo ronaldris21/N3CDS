@@ -5,8 +5,14 @@
     using Prism.Navigation;
     using System.Threading.Tasks;
     
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : Prism.Mvvm.BindableBase
     {
+        private string _Tittle;
+        public string Title
+        {
+            get { return _Tittle; }
+            set { SetProperty(ref _Tittle, value); }
+        }
         private bool _isNotBusy;
         public bool IsNotBusy
         {
@@ -90,9 +96,10 @@
             Correo = string.Empty;
             Pass = string.Empty;
         }
+        public INavigationService NavigationService { get; set; }
         public MainPageViewModel(INavigationService navigationService)
-            : base(navigationService)
         {
+            NavigationService = navigationService;
             Title = "Login";
             IsBusy = false;
 

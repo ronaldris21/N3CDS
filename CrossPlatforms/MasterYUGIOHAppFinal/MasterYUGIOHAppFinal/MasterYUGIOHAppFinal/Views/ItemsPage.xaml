@@ -39,6 +39,7 @@
                                                             LoadingPlaceholder="BackCard.png"
                                                             ErrorPlaceholder="BackCard.png"
                                                             CacheDuration="10"
+                                                            HeightRequest="250"
                                                             RetryCount="1"
                                                             CacheType="Disk"
                                 >

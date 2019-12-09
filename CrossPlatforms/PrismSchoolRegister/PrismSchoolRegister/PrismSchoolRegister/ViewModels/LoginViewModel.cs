@@ -5,7 +5,7 @@
     using Prism.Commands;
     using Prism.Navigation;
     using System.Threading.Tasks;
-    public class LoginViewModel : ViewModels.ViewModelBase
+    public class LoginViewModel : Prism.Mvvm.BindableBase
     {
 
         private bool _isNotBusy;
@@ -35,8 +35,10 @@
             set { SetProperty(ref _pass, value); }
         }
         #endregion
-        public LoginViewModel(INavigationService nav) : base(nav)
+        public INavigationService NavigationService { get; set; }
+        public LoginViewModel(INavigationService nav)
         {
+            NavigationService = nav;
             IsBusy = false;
         }
 
