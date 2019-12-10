@@ -9,9 +9,11 @@ namespace PrismSchoolRegister.Services
     using System.Threading.Tasks;
     public static class JsonFilePath
     {
-        private static string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        public static string MateriasJson = Path.Combine(path, "MateriasJson.json");
-        public static string DocentesJson = Path.Combine(path, "DocentesJson.json");
+
+        //Asegurate de hacer esto:
+        //Build Action -> Embedded resource
+        public static string MateriasJson = $"PrismSchoolRegister.EmbededSources.MateriaFile.json";
+        public static string DocentesJson = $"PrismSchoolRegister.EmbededSources.DocentesFile.json";
 
     }
 
@@ -31,13 +33,26 @@ namespace PrismSchoolRegister.Services
                 strm.Close();
             }
         }
-        public async Task<T> ReadSavedData<T>(string Jsonpath)
-        {
-            using (var file = File.Open(Jsonpath, FileMode.Open, FileAccess.Read))
+        
 
-            using (var strm = new StreamReader(file))
+
+        public async Task<T> ReadFromJsonEmbededFile<T>(string JsonFileEmbeded)
+        {
+            try
             {
-                return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(await strm.ReadToEndAsync());
+                var assembly = IntrospectionExtensions.GetTypeInfo(typeof(JsonLocalHandler)).Assembly;
+                Stream stream = assembly.GetManifestResourceStream(JsonFileEmbeded);
+
+                using (var reader = new System.IO.StreamReader(stream))
+                {
+                    return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(await reader.ReadToEndAsync());
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return default(T);
             }
         }
 

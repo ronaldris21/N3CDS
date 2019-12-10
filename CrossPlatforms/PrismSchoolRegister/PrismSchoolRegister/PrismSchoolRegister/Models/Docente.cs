@@ -1,15 +1,27 @@
 ﻿namespace PrismSchoolWithLogin.Models
 {
-    public class Docente
+    public class Docente : Prism.Mvvm.BindableBase
     {
-        public int idDocente { get; set; }
-        public string Nombre { get; set; }
-        public int Edad { get; set; }
-        public string Correo { get; set; }
+        private string _Nombre;
+        private int _Edad;
+        private string _Correo;
 
-        public override int GetHashCode()
+
+        public string Nombre
         {
-            return idDocente;
+            get => _Nombre;
+            set => SetProperty(ref _Nombre, value);
         }
+        public int Edad
+        {
+            get => _Edad;
+            set => SetProperty(ref _Edad, value);
+        }
+        public string Correo
+        {
+            get => _Correo;
+            set => SetProperty(ref _Correo, value);
+        }
+
     }
 }

@@ -15,7 +15,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -98,7 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MasterYUGIOHAppFinal\MasterYUGIOHAppFinal.csproj">
-      <Project>{DC665E95-A6D8-4521-9227-7B87BAA3A2C3}</Project>
+      <Project>{ED0D4D8B-1538-44D0-A22E-E59510F8A97B}</Project>
       <Name>MasterYUGIOHAppFinal</Name>
     </ProjectReference>
   </ItemGroup>

@@ -52,23 +52,22 @@ namespace PrismSchoolRegister.ViewModels
         private  void RefreshMethod()
         {
             IsBusy = true;
-            if (!jsonHandler.ExistsSavedJsonData(Services.JsonFilePath.MateriasJson))
+            
+            try
             {
-                AllMaterias = new ObservableCollection<Materia>();
-            }
-            else
-            {
-                try
+                Task.Run(async () => AllMaterias = await jsonHandler.ReadFromJsonEmbededFile<ObservableCollection<Materia>>(Services.JsonFilePath.MateriasJson)).Wait();
+                if (AllMaterias == null)
                 {
-                    Task.Run(async () => AllMaterias = await jsonHandler.ReadSavedData<ObservableCollection<Materia>>(Services.JsonFilePath.MateriasJson)).Wait();
-                    Task.Delay(100);
-                }
-                catch (Exception ex)
-                {
-                    Debug.Print(ex.Message);
                     AllMaterias = new ObservableCollection<Materia>();
                 }
+                Task.Delay(100);
             }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+                AllMaterias = new ObservableCollection<Materia>();
+            }
+            
 
             IsBusy = false;
         }

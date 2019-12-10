@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="EmbededSources\DocentesFile.json" />
+    <EmbeddedResource Include="EmbededSources\MateriaFile.json" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Views\DocentesPAGE.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -25,4 +29,11 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="EmbededSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="EmbededSources\DocentesFile.json" />
+    <None Remove="EmbededSources\MateriaFile.json" />
+  </ItemGroup>
 </Project>

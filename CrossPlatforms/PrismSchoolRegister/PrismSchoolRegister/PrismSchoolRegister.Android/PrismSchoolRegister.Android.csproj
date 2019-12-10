@@ -92,7 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PrismSchoolRegister\PrismSchoolRegister.csproj">
-      <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
+      <Project>{3954D705-32F5-48C2-860D-D9BDE128481E}</Project>
       <Name>PrismSchoolRegister</Name>
     </ProjectReference>
   </ItemGroup>
