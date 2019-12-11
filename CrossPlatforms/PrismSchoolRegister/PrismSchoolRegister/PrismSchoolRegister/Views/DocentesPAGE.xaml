@@ -10,7 +10,7 @@
     <ListView Header="{Binding }"
               ItemsSource="{Binding AllDocentes}"
               IsPullToRefreshEnabled="True"
-              IsRefreshing="{Binding IsBusy,Mode=OneWay}"
+              IsRefreshing="{Binding IsBusy,Mode=OneTime}"
               RefreshCommand="{Binding RefreshCommand}"
               >
         <ListView.HeaderTemplate>
@@ -48,7 +48,8 @@
 
                         <Button Text="Registrar" 
                                 BackgroundColor="#6E58E8"
-                                TextColor="White" 
+                                TextColor="White"
+                                IsEnabled="{Binding  IsNotBusy}"
                                 Command="{Binding AddCommand}"/>
                         <BoxView HeightRequest="2" HorizontalOptions="Fill" BackgroundColor="Black"/>
                         <Grid HorizontalOptions="Fill">

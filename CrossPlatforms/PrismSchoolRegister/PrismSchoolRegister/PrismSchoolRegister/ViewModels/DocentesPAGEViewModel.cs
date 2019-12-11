@@ -1,14 +1,11 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Prism.Commands;
 using Prism.Navigation;
 using PrismSchoolRegister.Services;
 using PrismSchoolWithLogin.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PrismSchoolRegister.ViewModels
 {
@@ -18,6 +15,7 @@ namespace PrismSchoolRegister.ViewModels
         private INavigationService Nav { get; set; }
         public DocentesPAGEViewModel(Prism.Navigation.INavigationService nav)
         {
+            IsNotBusy = true;
             Nav = nav;
             DocenteNueva = new Docente();
             jsonHandler = new JsonLocalHandler();
@@ -44,16 +42,20 @@ namespace PrismSchoolRegister.ViewModels
             IsBusy = true;
             AllDocentes.Add(DocenteNueva);
             DocenteNueva = new Docente();
-            jsonHandler.SaveData<ObservableCollection<Docente>>(AllDocentes, JsonFilePath.DocentesJson);
+            jsonHandler.SaveData<ObservableCollection<Docente>>(AllDocentes, jsonHandler.DocentesJson);
             IsBusy = false;
         }
 
         private void RefreshMethod()
         {
+            if (IsBusy)
+            {
+                return;
+            }
             IsBusy = true;
             try
             {
-                Task.Run(async () => AllDocentes = await jsonHandler.ReadFromJsonEmbededFile<ObservableCollection<Docente>>(Services.JsonFilePath.DocentesJson)).Wait();
+                Task.Run(async () => AllDocentes = await jsonHandler.ReadSavedData<ObservableCollection<Docente>>(jsonHandler.DocentesJson)).Wait();
                 if (AllDocentes==null)
                 {
                     AllDocentes = new ObservableCollection<Docente>();

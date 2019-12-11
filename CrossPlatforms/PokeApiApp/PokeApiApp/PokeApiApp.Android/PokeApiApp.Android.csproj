@@ -15,7 +15,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -96,7 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PokeApiApp\PokeApiApp.csproj">
-      <Project>{E872CC4C-3564-44A1-B417-6AE09907E92A}</Project>
+      <Project>{05F14001-4E55-4548-B6AF-8FFF3E62804F}</Project>
       <Name>PokeApiApp</Name>
     </ProjectReference>
   </ItemGroup>

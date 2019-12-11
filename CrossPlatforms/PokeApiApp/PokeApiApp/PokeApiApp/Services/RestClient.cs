@@ -16,7 +16,16 @@ namespace PokeApiApp.Services
             client.Dispose();
         }
 
-        
+
+        public async Task<Pokemondetail> PokemondetailMethod(string url)
+        {
+                var poke = new Pokemondetail();
+                client = new HttpClient();
+                var content = await client.GetAsync(url);
+                var json = await content.Content.ReadAsStringAsync();
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<Pokemondetail>(json);
+        }
+
 
         public async Task<Pokemons> GetPokemons(int cantidad)
         {

@@ -1,14 +1,11 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Prism.Commands;
 using Prism.Navigation;
 using PrismSchoolRegister.Services;
 using PrismSchoolWithLogin.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PrismSchoolRegister.ViewModels
 {
@@ -18,6 +15,7 @@ namespace PrismSchoolRegister.ViewModels
         private INavigationService Nav { get; set; }
         public MateriasPageViewModel(INavigationService nav)
         {
+            IsNotBusy = true;
             Nav = nav;
             MateriaNueva = new Materia();
             jsonHandler = new JsonLocalHandler();
@@ -42,20 +40,23 @@ namespace PrismSchoolRegister.ViewModels
         private void AddMethod()
         {
             IsBusy = true;
-            MateriaNueva.Carrera = Carrera;
             AllMaterias.Add(MateriaNueva);
             MateriaNueva = new Materia();
-            jsonHandler.SaveData<ObservableCollection<Materia>>(AllMaterias,JsonFilePath.MateriasJson);
+            jsonHandler.SaveData<ObservableCollection<Materia>>(AllMaterias,jsonHandler.MateriasJson);
             IsBusy = false;
         }
 
         private  void RefreshMethod()
         {
+            if(IsBusy)
+            {
+                return;
+            }
             IsBusy = true;
             
             try
             {
-                Task.Run(async () => AllMaterias = await jsonHandler.ReadFromJsonEmbededFile<ObservableCollection<Materia>>(Services.JsonFilePath.MateriasJson)).Wait();
+                Task.Run(async () => AllMaterias = await jsonHandler.ReadSavedData<ObservableCollection<Materia>>(jsonHandler.MateriasJson)).Wait();
                 if (AllMaterias == null)
                 {
                     AllMaterias = new ObservableCollection<Materia>();

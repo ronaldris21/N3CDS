@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasBackButton="True"
+             NavigationPage.HasNavigationBar="True"
+             x:Class="PokeApiApp.Views.Pokemon">
+    <ContentPage.Content>
+        <Frame HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="10" HasShadow="True">
+            <StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="{Binding poke.sprites.front_default}" Aspect="AspectFit" HeightRequest="75" WidthRequest="75" Grid.Row="0"/>
+
+                    <Label Text="{Binding poke.name}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" Grid.Row="1"/>
+                    <StackLayout Orientation="Horizontal" Grid.Row="2">
+                        <Label Text="Altura:" Grid.Row="2" VerticalOptions="Center"/>
+                        <Label Text="{Binding poke.height}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" Grid.Row="2"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="3">
+                        <Label Text="Peso:" Grid.Row="3" VerticalOptions="Center"/>
+                        <Label Text="{Binding poke.weight
+                            }" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" Grid.Row="3"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Grid.Row="4">
+                        <Label Text="# pokedex:" Grid.Row="4" VerticalOptions="Center"/>
+                        <Label Text="{Binding poke.id}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" Grid.Row="4"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>
