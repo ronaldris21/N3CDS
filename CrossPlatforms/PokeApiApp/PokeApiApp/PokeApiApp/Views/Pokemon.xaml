@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              NavigationPage.HasBackButton="True"
+             xmlns:ffimage ="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              NavigationPage.HasNavigationBar="True"
              x:Class="PokeApiApp.Views.Pokemon">
     <ContentPage.Content>
@@ -17,7 +18,16 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Image Source="{Binding poke.sprites.front_default}" Aspect="AspectFit" HeightRequest="75" WidthRequest="75" Grid.Row="0"/>
+                    <ffimage:CachedImage
+                            Source="{Binding poke.sprites.front_default,Mode=TwoWay}"
+                               HeightRequest="75"
+                               WidthRequest="75"
+                            CacheDuration="5"
+                            LoadingPlaceholder="pokeball.png"
+                            CacheType="Disk"
+                            RetryCount="3"
+                            
+                            />
 
                     <Label Text="{Binding poke.name}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" Grid.Row="1"/>
                     <StackLayout Orientation="Horizontal" Grid.Row="2">
